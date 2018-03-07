@@ -89,5 +89,11 @@ namespace PdfSharp.Drawing.BarCodes
         {
             return string.Format("'{1}'x'{0}' is an invalid ecc200 DataMatrix size.", columns, rows);
         }
+
+        internal static string InvalidCode128(int code)
+        {
+            return string.Format("'{0}' is not a valid code for a code128 bar code.", code);
+        }
+
     }
 }
