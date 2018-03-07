@@ -1,7 +1,8 @@
-﻿namespace PdfSharp.Drawing.BarCodes
+﻿using System;
+using System.Collections.Generic;
+
+namespace PdfSharp.Drawing.BarCodes
 {
-    using System;
-    using System.Collections.Generic;
     /// <summary>
     /// A Class to be able to render a Code 128 bar code
     /// </summary>
@@ -10,16 +11,11 @@
     /// </remarks>
     public class Code128 : BarCode
     {
-        #region Constants
-        #region private
         /// <summary>
-        /// The cod e 128_ stopcode.
+        /// The code 128_ stopcode.
         /// </summary>
         private const int CODE128_STOPCODE = 106;
-        #endregion
-        #endregion
-        #region Fields
-        #region private
+
         /// <summary>
         /// The code 128 code.
         /// </summary>
@@ -33,12 +29,12 @@
                 this.CheckTypeC(this.Text);
             }
         }
+
         /// <summary>
         /// The values.
         /// </summary>
         private Byte[] Values;
-        #endregion
-        #region public
+
         /// <summary>
         /// A static place holder for the patterns to draw the code 128 barcode
         /// </summary>
@@ -153,10 +149,6 @@
             { 106, new Byte[] { 2, 3, 3, 1, 1, 1, 2 } }
         };
 
-        #endregion
-        #endregion
-        #region Methods
-        #region private
         /// <summary>
         /// The calculate parity.
         /// </summary>
@@ -171,6 +163,7 @@
             parityValue %= 103;
             return (int)parityValue;
         }
+
         /// <summary>
         /// The get pattern.
         /// </summary>
@@ -191,6 +184,7 @@
                 throw new ArgumentOutOfRangeException("Parameter ch (int) can not be greater than 138.");
             return Patterns[(byte)codeValue];
         }
+
         /// <summary>
         /// Renders a single line of the character. Each character has three lines and three spaces
         /// </summary>
@@ -231,7 +225,8 @@
         /// <param name="info">
         /// The info.
         /// </param>
-        private void RenderStart(BarCodeRenderInfo info) { this.RenderValue(info, (int)this.Code128Code); }
+        private void RenderStart(BarCodeRenderInfo info) => this.RenderValue(info, (int)this.Code128Code);
+
 
         /// <summary>
         /// The render stop.
@@ -334,7 +329,7 @@
         /// <param name="barWidth">
         /// Indicates the thickness of the line/bar to be rendered. 
         /// </param>
-        internal void RenderBar(BarCodeRenderInfo info, double barWidth) { this.RenderBar(info, barWidth, info.Brush); }
+        internal void RenderBar(BarCodeRenderInfo info, double barWidth) => this.RenderBar(info, barWidth, info.Brush);
 
         /// <summary>
         /// Renders the content found in Text
@@ -404,8 +399,7 @@
                 this.RenderText(info);
             gfx.Restore(state);
         }
-        #endregion
-        #region protected
+
         /// <summary>
         /// Validates the text string to be coded
         /// </summary>
@@ -420,19 +414,31 @@
                 throw new ArgumentException("Parameter text (string) can not be empty");
             this.CheckTypeC(text);
         }
-        #endregion
-        #endregion
-        #region Constructors
-        #region public
+
         /// <summary>
         /// Initializes a new instance of the <see cref="Code128"/> class. 
         /// Constructor
         /// </summary>
-        public Code128()
+        protected Code128()
             : base("", XSize.Empty, CodeDirection.LeftToRight)
         {
             this.code128Code = Code128Type.B;
         }
+
+        /// <summary>
+        /// Ctor 
+        /// Initializes a new instance of the <see cref="Code128"/> class with value
+        /// </summary>
+        /// <param name="text"></param>
+        public Code128(string text)
+            : base(text, XSize.Empty, CodeDirection.LeftToRight)
+        {
+            this.code128Code = Code128Type.B;
+            this.EndChar = '*';
+            this.StartChar = '*';
+            this.Direction = CodeDirection.LeftToRight;
+        }
+
         /// <summary>
         /// Ensure that the text is an even length.
         /// </summary>
@@ -442,7 +448,5 @@
             if (this.Code128Code == Code128Type.C && (codeC.Length % 2) == 1)
                 throw new ArgumentOutOfRangeException("Parameter text (string) must have an even length for Code 128 - Code C");
         }
-        #endregion
-        #endregion
     }
 }
