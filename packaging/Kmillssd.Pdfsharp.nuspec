@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <package>
   <metadata>
-    <id>Kmillssd.PDFSharp</id>
-    <version>1.51.0</version>
+    <id>Kmillssd.PdfSharp</id>
+    <version>1.51.1</version>
     <authors>Kyle Mills</authors>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Lightweight .NET Framework 4.6 version of PDFSharp with implementation of code 128 barcode</description>

@@ -149,6 +149,20 @@ namespace PdfSharp.Drawing.BarCodes
             { 106, new Byte[] { 2, 3, 3, 1, 1, 1, 2 } }
         };
 
+
+        /// <summary>
+        /// Ctor 
+        /// Initializes a new instance of the <see cref="Code128"/> class with value
+        /// </summary>
+        /// <param name="text"></param>
+        public Code128(string text)
+            : base(text, XSize.Empty, CodeDirection.LeftToRight)
+        {
+            this.code128Code = Code128Type.B;
+            this.EndChar = '*';
+            this.StartChar = '*';
+        }
+
         /// <summary>
         /// The calculate parity.
         /// </summary>
@@ -413,30 +427,6 @@ namespace PdfSharp.Drawing.BarCodes
             if (text.Length == 0)
                 throw new ArgumentException("Parameter text (string) can not be empty");
             this.CheckTypeC(text);
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="Code128"/> class. 
-        /// Constructor
-        /// </summary>
-        protected Code128()
-            : base("", XSize.Empty, CodeDirection.LeftToRight)
-        {
-            this.code128Code = Code128Type.B;
-        }
-
-        /// <summary>
-        /// Ctor 
-        /// Initializes a new instance of the <see cref="Code128"/> class with value
-        /// </summary>
-        /// <param name="text"></param>
-        public Code128(string text)
-            : base(text, XSize.Empty, CodeDirection.LeftToRight)
-        {
-            this.code128Code = Code128Type.B;
-            this.EndChar = '*';
-            this.StartChar = '*';
-            this.Direction = CodeDirection.LeftToRight;
         }
 
         /// <summary>
