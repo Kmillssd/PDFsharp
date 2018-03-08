@@ -2,16 +2,16 @@
 <package>
   <metadata>
     <id>Kmillssd.PDFSharp</id>
-    <version>1.33.0</version>
+    <version>1.51.0</version>
     <authors>Kyle Mills</authors>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>Extension of PDFSharp for 128barcodes</description>
-    <releaseNotes>Initial release.</releaseNotes>
+    <description>Lightweight .NET Framework 4.6 version of PDFSharp with implementation of code 128 barcode</description>
+    <releaseNotes>Initial release</releaseNotes>
 	<projectUrl>https://github.com/Kmillssd/PDFsharp</projectUrl>
 	<tags>PDF, creation, PDFsharp</tags>
   </metadata>
   <files>
-    <file src="dist/PDFSharp.dll" target="lib\net452\PdfSharp.dll" />
-	<file src="dist/PDFSharp.Charting.dll" target="lib\net452\PdfSharp.Charting.dll" />
+    <file src="dist/PDFSharp.dll" target="lib\net46\PdfSharp.dll" />
+	<file src="dist/PDFSharp.Charting.dll" target="lib\net46\PdfSharp.Charting.dll" />
   </files>
 </package>
